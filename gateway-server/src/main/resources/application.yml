@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: product
+        uri: lb://product
+        predicates:
+          - Path=/api/product/**
+        filters:
+          - StripPrefix=2
+          - name: Example
+            args:
+              mensaje: Mensaje personalizado
+              cookieNombre: usuario
+              cookieValor: jhonSebastian
+      - id: item
+        uri: lb://item
+        predicates:
+          - Path=/api/item/**
+        filters:
+          - StripPrefix=2
+            
